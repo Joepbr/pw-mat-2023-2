@@ -36,6 +36,8 @@
         const [vReal, setVreal] = React.useState()
         const [cDolar, setCdolar] = React.useState()
 
+        let vDolar = Number(vReal) / Number(cDolar)
+
         return <>
             <h1>Conversão de reais para dólar</h1>
             <form>
@@ -60,8 +62,8 @@
                     </label>
                 </div>
                 <div>
-                    Valor final em dólares:
-                    {Number(vReal) + Number(cDolar)}
+                    Valor final em dólares: 
+                    {vDolar.toLocaleString('en-US', {style: 'currency', currency:'USD'})}
                 </div>
             </form>
         </>

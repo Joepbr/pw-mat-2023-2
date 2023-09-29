@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="08.css">
+</head>
+<body>
+
+  <script src="https://unpkg.com/react@18/umd/react.development.js" crossorigin></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js" crossorigin></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  
+  <div id="root"></div>
+
+  <script type="text/babel">
+    function Form(){
+
+        /*
+        Estabelecer as variáveis de estado num1 e num2 e suas respectivas
+        funções de atualização, fazendo uso do useState como hook
+        */
+        const [num1, setNum1] = React.useState()
+        const [num2, setNum2] = React.useState()
+
+        let area = num1 * num2 * Math.PI
+
+        return <>
+            <h1>Cálculo da Área de uma Elipse</h1>
+            <form>
+                <div>
+                    <label>
+                        <span>Medida do raio maior</span><br/>
+                        {/*Usar o valor de imput neste campo para atualizar o valor da variável de estado num1*/}
+                        <input
+                            type="number"
+                            onChange={event => setNum1(event.target.value)}
+                            value={num1}
+                        />
+                    </label>
+                </div>
+                <div>
+                    <label>
+                        <span>Medida do raio menor</span><br/>
+                        {/*Usar o valor de imput neste campo para atualizar o valor da variável de estado num2*/}
+                        <input
+                            type="number"
+                            onChange={event => setNum2(event.target.value)}
+                            value={num2}
+                        />
+                    </label>
+                </div>
+                <div>
+                    {/*exibir o valor da área a partir dos números inseridos nos campos anteriores*/}
+                    Área: {area.toLocaleString('pt-br', {
+                        maximumFractionDigits: 4
+                    })
+                    }
+                </div>
+            </form>
+        </>
+    }
+    const container = <>
+            <Form/>
+        </>
+    
+    const root = ReactDOM.createRoot(document.getElementById('root'))
+    root.render(container)
+
+  </script>
+</body>
+</html>
